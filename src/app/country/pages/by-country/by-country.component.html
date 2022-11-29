@@ -5,6 +5,7 @@
         <app-country-input  
             (onTerm)="buscar($event)"
             (onDebounce)="suggestion( $event )"
+            placeholder="buscar por país..."
         ></app-country-input>
     </div>
 </div>
@@ -16,7 +17,8 @@
 
 <div *ngIf="countries.length > 0" class="row">
     <div class="col">
-       <app-country-table [countries]="countries"></app-country-table>
+       <app-country-table [countries]="countries"
+       ></app-country-table>
     </div>
 
 </div>

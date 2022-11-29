@@ -9,17 +9,23 @@ import { Country } from '../interfaces/country.interface';
 })
 export class CountryService {
 
-  private apiUrl: string = "https://restcountries.com/v3.1";
+  private apiUrl: string = "https://restcountries.com/v3.1"; 
 
   constructor(private http: HttpClient) { }
 
-  buscarPais(termino: string): Observable<Country[]>{
-
+  searchCountry(termino: string): Observable<Country[]>{
     const url = `${this.apiUrl}/name/${termino}`
-
     return this.http.get<Country[]>(url);
-
   }
 
+  searchCapital(termino: string): Observable<Country[]>{
+    const url = `${this.apiUrl}/capital/${termino}`
+    return this.http.get<Country[]>(url);
+  }
+
+  getCountryByAlpha(codeCountry: string): Observable<Country[]>{
+    const url = `${this.apiUrl}/alpha/${codeCountry}`
+    return this.http.get<Country[]>(url);
+  }
 
 }

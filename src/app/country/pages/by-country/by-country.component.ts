@@ -22,7 +22,7 @@ export class ByCountryComponent {
     
     this.errorExist = false;
 
-    this.countryService.buscarPais(this.term).subscribe((resp) =>{
+    this.countryService.searchCountry(this.term).subscribe((resp) =>{
       console.log(resp);
       this.countries = resp;
     },
