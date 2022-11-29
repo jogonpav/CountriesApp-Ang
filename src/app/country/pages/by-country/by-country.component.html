@@ -1,1 +1,22 @@
-<p>by-country works!</p>
+<h2>Por País</h2>
+
+<div class="row">
+    <div class="col">
+        <app-country-input  
+            (onTerm)="buscar($event)"
+            (onDebounce)="suggestion( $event )"
+        ></app-country-input>
+    </div>
+</div>
+<hr>
+
+<div *ngIf="errorExist" class="alert alert-danger">
+    No se encontró nada con el término {{ term }}
+</div>
+
+<div *ngIf="countries.length > 0" class="row">
+    <div class="col">
+       <app-country-table [countries]="countries"></app-country-table>
+    </div>
+
+</div>
