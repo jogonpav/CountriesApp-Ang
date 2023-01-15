@@ -5,22 +5,15 @@
 
 <div>
     <div class="col">
-        <!-- [class.btn-primary]="region === activeRegion" -->
-        <!-- [ngClass]="{
-            'btn-primary': activeRegion === region,
-            'btn-outline-primary': activeRegion !== region
-            }" 
-        -->
-        <!-- [class]="(region === activeRegion) ? 'btn btn-primary':'btn btn-outline-primary'" -->
         <button *ngFor="let region of regions" 
                 [class]="getClassesCSS(region)"
                 (click)="activingRegion(region)"
-                
-                >{{region | titlecase}} </button>
+                >{{region | titlecase}}
+        </button>
     </div>
 </div>
 
-<div *ngIf="countries.length > 0" class="row">
+<div *ngIf="countries.length > 0" class="row animate__animated animate__fadeIn">
     <div class="col">
        <app-country-table [countries]="countries"></app-country-table>
     </div>

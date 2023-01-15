@@ -6,6 +6,11 @@ import { CountryService } from '../../services/country.service';
   selector: 'app-by-country',
   templateUrl: './by-country.component.html',
   styles: [
+    `
+      li {
+        cursor: pointer;
+      }
+    `
   ]
 })
 export class ByCountryComponent {
@@ -15,13 +20,17 @@ export class ByCountryComponent {
 
   countries: Country[] = [];
 
+  suggestedCountries: Country[] = []; 
+
+  existSuggestion: Boolean = false;
+
   constructor(private countryService: CountryService) { }
   
   buscar(term: string){
+    this.existSuggestion = false;
     this.term = term;
-    
     this.errorExist = false;
-
+    
     this.countryService.searchCountry(this.term).subscribe((resp) =>{
       console.log(resp);
       this.countries = resp;
@@ -32,8 +41,12 @@ export class ByCountryComponent {
     })
   }
 
-  suggestion( termino: string ){
+  suggestion( term: string ){
     this.errorExist = false;
-    //TODO: CREAR SUGERENCIA
+    this.term = term;
+    this.existSuggestion = true;
+    this.countryService.searchCountry(term)
+      .subscribe(resp => this.suggestedCountries = resp.slice(0,5),
+        (err) => this.suggestedCountries =[] );
   }
 }

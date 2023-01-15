@@ -9,13 +9,23 @@
         ></app-country-input>
     </div>
 </div>
+
+<ul *ngIf="existSuggestion" class="list-group">
+    <li class="list-group-item list-group-item-action">
+        <a (click)="buscar(term)" class="nav-link">Buscar "{{ term }}"</a>
+    </li>
+    <li *ngFor="let country of suggestedCountries" class="list-group-item list-group-item-action">
+        <a [routerLink]="['/country', country.cca2]" class="nav-link">{{country.name.common}}</a>
+    </li>
+</ul>
+
 <hr>
 
 <div *ngIf="errorExist" class="alert alert-danger">
     No se encontró nada con el término {{ term }}
 </div>
 
-<div *ngIf="countries.length > 0" class="row">
+<div *ngIf="countries.length > 0" class="row animate__animated animate__fadeIn">
     <div class="col">
        <app-country-table [countries]="countries"
        ></app-country-table>

@@ -20,14 +20,12 @@ export class CountryInputComponent implements OnInit{
   debouncer: Subject<string> = new Subject();
 
   ngOnInit(): void {
-    
     this.debouncer
     .pipe(debounceTime(300))
     .subscribe(valor =>{
       this.onDebounce.emit( valor )
       console.log(valor)
     })
-
     console.log( this.debouncer)
   }
 
