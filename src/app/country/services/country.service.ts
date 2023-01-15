@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -13,14 +13,18 @@ export class CountryService {
 
   constructor(private http: HttpClient) { }
 
+  get httpParams (){
+   return new HttpParams().set('fields','name,capital,cca2,flags,population');
+  }
+
   searchCountry(termino: string): Observable<Country[]>{
     const url = `${this.apiUrl}/name/${termino}`
-    return this.http.get<Country[]>(url);
+    return this.http.get<Country[]>(url, { params: this.httpParams });
   }
 
   searchCapital(termino: string): Observable<Country[]>{
     const url = `${this.apiUrl}/capital/${termino}`
-    return this.http.get<Country[]>(url);
+    return this.http.get<Country[]>(url, { params: this.httpParams });
   }
 
   getCountryByAlpha(codeCountry: string): Observable<Country[]>{
@@ -30,7 +34,7 @@ export class CountryService {
 
   getCountryByRegion(codeRegion: string): Observable<Country[]>{
     const url = `${this.apiUrl}/region/${codeRegion}`
-    return this.http.get<Country[]>(url);
+    return this.http.get<Country[]>(url, { params: this.httpParams });
   }
 
 

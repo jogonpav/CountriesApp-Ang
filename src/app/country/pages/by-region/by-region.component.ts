@@ -28,30 +28,13 @@ export class ByRegionComponent  {
   }
 
   activingRegion ( region: string){
-
     if (region === this.activeRegion) { return; }
-
-
     this.activeRegion = region;
-
     this.countries = [];
 
-  
-
-   this.countryService.getCountryByRegion(region).subscribe( (resp) => {
-
-    this.countries = resp;
-   }
-
-   )
-
-
-
-
-
-    //TODO: hacer el llamado al servicio
-  }
-
-
-
+    this.countryService.getCountryByRegion(region)
+     .subscribe( (resp) => {
+      this.countries = resp;
+       }
+    )}
 }
