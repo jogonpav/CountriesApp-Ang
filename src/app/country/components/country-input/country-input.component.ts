@@ -26,7 +26,6 @@ export class CountryInputComponent implements OnInit{
     .subscribe(valor =>{
       this.onDebounce.emit( valor )
       console.log(valor)
-      console.log("hola2")
     })
 
     console.log( this.debouncer)

@@ -30,17 +30,6 @@ export class ShowCountryComponent implements OnInit {
     )
     .subscribe( resp=> this.country = resp )
 
-
-/*
-    this.activatedRoute.params
-        .subscribe( ({countryCode})=> {
-        this.countryService.getCountryByAlpha(countryCode)
-          .subscribe((country: Country[]) =>{
-            console.log(country)
-          })
-      })
-
-*/
       
   }
 
