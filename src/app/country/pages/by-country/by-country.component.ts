@@ -30,7 +30,6 @@ export class ByCountryComponent {
     this.existSuggestion = false;
     this.term = term;
     this.errorExist = false;
-    
     this.countryService.searchCountry(this.term).subscribe((resp) =>{
       console.log(resp);
       this.countries = resp;
@@ -44,6 +43,10 @@ export class ByCountryComponent {
   suggestion( term: string ){
     this.errorExist = false;
     this.term = term;
+    if (this.term === "") { 
+      this.existSuggestion = false;
+      return
+    }
     this.existSuggestion = true;
     this.countryService.searchCountry(term)
       .subscribe(resp => this.suggestedCountries = resp.slice(0,5),

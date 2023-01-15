@@ -1,18 +1,18 @@
-<h2>Por País</h2>
+<h2>By Country</h2>
 
 <div class="row">
     <div class="col">
         <app-country-input  
             (onTerm)="buscar($event)"
             (onDebounce)="suggestion( $event )"
-            placeholder="buscar por país..."
+            placeholder="Search by contry..."
         ></app-country-input>
     </div>
 </div>
 
 <ul *ngIf="existSuggestion" class="list-group">
     <li class="list-group-item list-group-item-action">
-        <a (click)="buscar(term)" class="nav-link">Buscar "{{ term }}"</a>
+        <a (click)="buscar(term)" class="nav-link">Search "{{ term }}"</a>
     </li>
     <li *ngFor="let country of suggestedCountries" class="list-group-item list-group-item-action">
         <a [routerLink]="['/country', country.cca2]" class="nav-link">{{country.name.common}}</a>
@@ -22,7 +22,7 @@
 <hr>
 
 <div *ngIf="errorExist" class="alert alert-danger">
-    No se encontró nada con el término {{ term }}
+     Nothing was found for the {{ term }}
 </div>
 
 <div *ngIf="countries.length > 0" class="row animate__animated animate__fadeIn">
